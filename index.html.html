@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sons Assets SGPS, S.A. | Gestão de Participações Sociais</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#F5B800;
+    --yellow-light:#FFC629;
+    --yellow-dark:#D99E00;
+    --black:#1A1A1A;
+    --black-soft:#2B2B2B;
+    --gray-dark:#4A4A4A;
+    --gray:#7F7F7F;
+    --gray-light:#D9D9D9;
+    --gray-bg:#F5F5F5;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--black);line-height:1.6;background:var(--white);overflow-x:hidden}
+  h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:-0.5px;line-height:1.1}
+
+  /* TOP BAR */
+  .topbar{background:var(--black);color:var(--gray-light);font-size:12px;padding:8px 40px;display:flex;justify-content:space-between;align-items:center}
+  .topbar-info{display:flex;gap:24px}
+  .topbar-info span{display:flex;align-items:center;gap:6px}
+  .topbar-info a{color:var(--gray-light);text-decoration:none;transition:color .2s}
+  .topbar-info a:hover{color:var(--yellow)}
+  .lang-switch{display:flex;gap:4px;align-items:center}
+  .lang-btn{background:none;border:none;color:var(--gray-light);cursor:pointer;font-size:12px;padding:4px 8px;font-weight:600;letter-spacing:.5px;transition:color .2s}
+  .lang-btn.active{color:var(--yellow)}
+  .lang-btn:hover{color:var(--yellow)}
+  .lang-sep{color:var(--gray)}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:all .3s}
+  nav.scrolled{border-bottom-color:var(--gray-light);box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+  .nav-container{max-width:1400px;margin:0 auto;padding:16px 40px;display:flex;justify-content:space-between;align-items:center}
+  .logo{display:flex;align-items:center;gap:12px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;letter-spacing:1px;text-decoration:none}
+  .logo-mark{width:44px;height:44px}
+  .logo-text .sons{color:var(--black)}
+  .logo-text .assets{color:var(--yellow)}
+  .logo-tagline{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:9px;color:var(--gray);letter-spacing:.5px;margin-top:-2px;text-transform:none}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:var(--black);text-decoration:none;font-weight:500;font-size:14px;position:relative;transition:color .2s}
+  .nav-links a:hover{color:var(--yellow-dark)}
+  .nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--yellow);transition:width .3s}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{background:var(--black);color:var(--white);padding:10px 22px;border-radius:2px;font-weight:600;font-size:13px;text-decoration:none;transition:all .2s;letter-spacing:.5px}
+  .nav-cta:hover{background:var(--yellow);color:var(--black)}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:26px}
+
+  /* HERO */
+  .hero{min-height:90vh;background:var(--black);color:var(--white);display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 40px}
+  .hero-bg-image{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;opacity:.18;filter:grayscale(30%)}
+  .hero::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:linear-gradient(135deg,var(--yellow) 0%,var(--yellow-dark) 100%);clip-path:polygon(25% 0,100% 0,100% 100%,0 100%);opacity:.95;z-index:1}
+  .hero-pattern{position:absolute;top:0;right:0;width:55%;height:100%;opacity:.1;background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(0,0,0,.2) 30px,rgba(0,0,0,.2) 31px);z-index:2;clip-path:polygon(25% 0,100% 0,100% 100%,0 100%)}
+  .hero-container{max-width:1400px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .hero-content .eyebrow{display:inline-block;background:var(--yellow);color:var(--black);padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+  .hero h1{font-size:68px;margin-bottom:24px;line-height:1}
+  .hero h1 .accent{color:var(--yellow)}
+  .hero p.lead{font-size:18px;color:var(--gray-light);margin-bottom:36px;max-width:540px;font-weight:300}
+  .hero-cta-group{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:2px;font-weight:600;font-size:14px;text-decoration:none;letter-spacing:.5px;transition:all .3s;border:2px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
+  .btn-primary:hover{background:transparent;color:var(--yellow)}
+  .btn-outline{background:transparent;color:var(--white);border-color:var(--white)}
+  .btn-outline:hover{background:var(--white);color:var(--black)}
+  .hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+  .hero-logo-large{width:100%;max-width:400px;filter:drop-shadow(0 20px 50px rgba(0,0,0,.3));animation:float 6s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+  .hero-stats{max-width:1400px;margin:-40px auto 0;display:grid;grid-template-columns:repeat(4,1fr);background:var(--white);box-shadow:0 20px 60px rgba(0,0,0,.15);position:relative;z-index:10;border-top:4px solid var(--yellow)}
+  .stat{padding:26px 20px;border-right:1px solid var(--gray-light);text-align:center}
+  .stat:last-child{border-right:none}
+  .stat-num{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:var(--black);line-height:1}
+  .stat-num .sm{color:var(--yellow)}
+  .stat-label{font-size:11px;color:var(--gray);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+
+  /* SECTIONS */
+  section{padding:110px 40px;position:relative}
+  .container{max-width:1400px;margin:0 auto}
+  .section-header{text-align:center;margin-bottom:65px}
+  .section-eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yellow-dark);margin-bottom:14px;position:relative;padding:0 40px}
+  .section-eyebrow::before,.section-eyebrow::after{content:'';position:absolute;top:50%;width:28px;height:2px;background:var(--yellow)}
+  .section-eyebrow::before{left:0}
+  .section-eyebrow::after{right:0}
+  .section-title{font-size:52px;margin-bottom:18px}
+  .section-title .accent{color:var(--yellow)}
+  .section-subtitle{font-size:17px;color:var(--gray-dark);max-width:720px;margin:0 auto;font-weight:300}
+
+  /* SOBRE */
+  #sobre{background:var(--white)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .about-text h3{font-size:36px;margin-bottom:20px}
+  .about-text p{color:var(--gray-dark);margin-bottom:18px;font-size:16px}
+  .values{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+  .value-card{padding:22px;border-left:3px solid var(--yellow);background:var(--gray-bg)}
+  .value-card h4{font-size:17px;margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700}
+  .value-card p{font-size:13px;color:var(--gray);margin:0}
+  .presence-map{background:var(--black);padding:45px;position:relative;overflow:hidden}
+  .presence-map::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:var(--yellow);border-radius:50%;opacity:.1}
+  .presence-map h4{color:var(--white);font-size:26px;margin-bottom:28px;position:relative}
+  .presence-list{position:relative;z-index:2}
+  .presence-item{display:flex;align-items:center;gap:18px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .presence-item:last-child{border-bottom:none}
+  .presence-flag{font-size:30px}
+  .presence-info h5{color:var(--white);font-size:17px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px}
+  .presence-info p{color:var(--yellow);font-size:12px;margin:0;font-weight:500}
+
+  /* BANNER IMPACTO */
+  .impact-banner{position:relative;height:420px;background-image:url('https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--white);overflow:hidden}
+  .impact-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,26,.85) 0%,rgba(26,26,26,.65) 50%,rgba(217,158,0,.55) 100%)}
+  .impact-content{position:relative;z-index:2;max-width:900px;padding:0 40px}
+  .impact-content .eyebrow{display:inline-block;background:var(--yellow);color:var(--black);padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+  .impact-content h2{font-size:56px;margin-bottom:20px;line-height:1.05}
+  .impact-content h2 .accent{color:var(--yellow)}
+  .impact-content p{font-size:18px;color:var(--gray-light);font-weight:300;max-width:720px;margin:0 auto}
+  @media(max-width:968px){
+    .impact-banner{height:360px}
+    .impact-content h2{font-size:34px}
+    .impact-content p{font-size:15px}
+  }
+
+  /* TIMELINE */
+  #marcos{background:var(--gray-bg)}
+  .timeline{position:relative;max-width:960px;margin:0 auto;padding:20px 0}
+  .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--yellow);transform:translateX(-50%)}
+  .milestone{position:relative;width:50%;padding:20px 40px;box-sizing:border-box}
+  .milestone:nth-child(odd){left:0;text-align:right}
+  .milestone:nth-child(even){left:50%}
+  .milestone-dot{position:absolute;top:32px;width:16px;height:16px;background:var(--yellow);border:4px solid var(--white);border-radius:50%;z-index:2;box-shadow:0 0 0 2px var(--yellow)}
+  .milestone:nth-child(odd) .milestone-dot{right:-9px}
+  .milestone:nth-child(even) .milestone-dot{left:-9px}
+  .milestone-content{background:var(--white);padding:22px 26px;box-shadow:0 4px 15px rgba(0,0,0,.05);border-top:3px solid var(--yellow)}
+  .milestone-year{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--yellow-dark);line-height:1;margin-bottom:6px}
+  .milestone-content h4{font-size:18px;margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700}
+  .milestone-content p{color:var(--gray-dark);font-size:13px;margin:0}
+
+  /* ORGANOGRAMA */
+  #estrutura{background:var(--white)}
+  .org-chart{background:var(--gray-bg);padding:50px 30px;border-top:4px solid var(--yellow)}
+  .org-level{display:flex;justify-content:center;margin-bottom:30px;position:relative}
+  .org-parent{background:var(--black);color:var(--white);padding:20px 36px;text-align:center;position:relative;min-width:280px;border-left:4px solid var(--yellow)}
+  .org-parent h4{color:var(--yellow);font-size:22px;margin-bottom:4px}
+  .org-parent p{color:var(--gray-light);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin:0}
+  .org-connector{width:2px;height:40px;background:var(--yellow);margin:0 auto}
+  .org-children{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+  .org-child{background:var(--white);padding:16px 14px;text-align:center;border-top:3px solid var(--yellow);font-size:12px;transition:all .2s;cursor:default}
+  .org-child:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+  .org-child strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.5px;margin-bottom:4px}
+  .org-child .sector{color:var(--gray);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+  .org-child .flag{font-size:18px;margin-bottom:6px;display:block}
+
+  /* BRAND SPOTLIGHT (Baratuxu) */
+  .brand-spotlight{background:var(--black);padding:60px 40px;position:relative;overflow:hidden}
+  .brand-spotlight::before{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:var(--yellow);clip-path:polygon(20% 0,100% 0,100% 100%,0 100%);opacity:.15}
+  .brand-spotlight-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:50px;align-items:center;position:relative;z-index:2}
+  .brand-spotlight-logo{background:var(--black);padding:30px 40px;border:2px solid var(--yellow);min-width:280px;text-align:center}
+  .brand-spotlight-logo svg{width:200px;height:auto}
+  .brand-spotlight-info h3{color:var(--white);font-size:32px;margin-bottom:12px}
+  .brand-spotlight-info h3 .accent{color:var(--yellow)}
+  .brand-spotlight-info p{color:var(--gray-light);font-size:15px;font-weight:300;margin-bottom:12px}
+  .brand-spotlight-info .tag{display:inline-block;background:var(--yellow);color:var(--black);padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-right:8px;margin-bottom:8px}
+  @media(max-width:768px){
+    .brand-spotlight-content{grid-template-columns:1fr;text-align:center}
+    .brand-spotlight-logo{margin:0 auto}
+  }
+
+  /* PORTEFÓLIO */
+  #portefolio{background:var(--gray-bg)}
+  .cluster{margin-bottom:70px}
+  .cluster:last-child{margin-bottom:0}
+  .cluster-header{display:flex;align-items:center;gap:20px;margin-bottom:36px;padding-bottom:18px;border-bottom:2px solid var(--black)}
+  .cluster-num{background:var(--yellow);color:var(--black);width:54px;height:54px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;flex-shrink:0}
+  .cluster-title h3{font-size:30px;margin-bottom:4px}
+  .cluster-title p{color:var(--gray);font-size:13px;font-weight:500;letter-spacing:1px;text-transform:uppercase}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .portfolio-card{background:var(--white);padding:28px;border:1px solid var(--gray-light);transition:all .4s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .portfolio-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--yellow);transform:scaleY(0);transform-origin:top;transition:transform .4s}
+  .portfolio-card:hover::before{transform:scaleY(1)}
+  .portfolio-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.08);border-color:transparent}
+  .portfolio-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:12px}
+  .portfolio-logo{width:72px;height:72px;background:var(--white);border:1px solid var(--gray-light);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:6px;overflow:hidden}
+  .portfolio-logo svg{width:100%;height:100%}
+  .portfolio-flag{font-size:22px}
+  .portfolio-card h4{font-size:20px;margin-bottom:8px}
+  .portfolio-sector{display:inline-block;background:var(--black);color:var(--yellow);padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+  .portfolio-desc{color:var(--gray-dark);font-size:14px;line-height:1.7;flex:1}
+  .portfolio-meta{margin-top:16px;padding-top:14px;border-top:1px solid var(--gray-light);font-size:12px;color:var(--gray);font-weight:500;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .portfolio-year{background:var(--yellow);color:var(--black);padding:3px 10px;font-weight:700;letter-spacing:.5px}
+
+  /* FINANCEIRAS */
+  #financeiras{background:var(--black);color:var(--white)}
+  #financeiras .section-title{color:var(--white)}
+  #financeiras .section-subtitle{color:var(--gray-light)}
+  .fin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:40px}
+  .fin-card{background:var(--black-soft);border:1px solid rgba(245,184,0,.2);padding:32px 24px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
+  .fin-card::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:3px;background:var(--yellow);transition:all .4s;transform:translateX(-50%)}
+  .fin-card:hover::after{width:100%}
+  .fin-card:hover{background:var(--gray-dark);border-color:var(--yellow);transform:translateY(-4px)}
+  .fin-logo-placeholder{width:80px;height:80px;margin:0 auto 18px;background:var(--yellow);color:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:.5px}
+  .fin-card h4{color:var(--white);font-size:18px;margin-bottom:6px;line-height:1.2}
+  .fin-card .fin-full{color:var(--yellow);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+  .fin-card .fin-desc{color:var(--gray-light);font-size:13px;font-weight:300;margin:0}
+  .fin-type-label{display:inline-block;padding:10px 24px;background:transparent;border:2px solid var(--yellow);color:var(--yellow);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+  .indirect-note{background:linear-gradient(135deg,rgba(245,184,0,.1) 0%,rgba(245,184,0,.05) 100%);border-left:4px solid var(--yellow);padding:28px 32px;margin-top:45px;max-width:900px;margin-left:auto;margin-right:auto}
+  .indirect-note h5{color:var(--yellow);font-size:15px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;font-family:'Inter',sans-serif;font-weight:700}
+  .indirect-note p{color:var(--gray-light);font-size:15px;margin:0;font-weight:300}
+
+  /* GOVERNANCE */
+  #governance{background:var(--white)}
+  .gov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+  .gov-card{padding:32px 24px;background:var(--gray-bg);border-top:4px solid var(--yellow);transition:all .3s}
+  .gov-card:hover{background:var(--white);box-shadow:0 10px 30px rgba(0,0,0,.06);transform:translateY(-4px)}
+  .gov-number{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;color:var(--yellow);line-height:1;margin-bottom:10px}
+  .gov-card h4{font-size:20px;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif}
+  .gov-card p{color:var(--gray-dark);font-size:13px}
+  .gov-docs{margin-top:50px;background:var(--gray-bg);padding:40px;border-top:4px solid var(--yellow)}
+  .gov-docs h3{font-size:26px;margin-bottom:20px}
+  .docs-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .doc-item{background:var(--white);padding:18px 22px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--black);border:1px solid var(--gray-light);transition:all .2s}
+  .doc-item:hover{border-color:var(--yellow);background:var(--yellow);color:var(--black);transform:translateX(4px)}
+  .doc-icon{font-size:22px;color:var(--yellow-dark);flex-shrink:0}
+  .doc-item:hover .doc-icon{color:var(--black)}
+  .doc-text strong{display:block;font-size:14px;margin-bottom:2px}
+  .doc-text span{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+  .doc-item:hover .doc-text span{color:var(--black-soft)}
+
+  /* CANAL DE DENÚNCIAS */
+  #denuncias{background:linear-gradient(135deg,var(--black) 0%,var(--black-soft) 100%);color:var(--white);padding:80px 40px}
+  .denuncia-box{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+  .denuncia-icon{font-size:60px;color:var(--yellow)}
+  .denuncia-content h3{color:var(--white);font-size:28px;margin-bottom:8px}
+  .denuncia-content p{color:var(--gray-light);font-size:15px;margin:0}
+  .denuncia-cta{background:var(--yellow);color:var(--black);padding:14px 28px;text-decoration:none;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:13px;transition:all .2s;white-space:nowrap}
+  .denuncia-cta:hover{background:var(--white);transform:translateY(-2px)}
+
+  /* ESTRATÉGIA */
+  #estrategia{background:var(--gray-bg);position:relative;overflow:hidden}
+  #estrategia::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;background:var(--yellow);opacity:.05;border-radius:50%}
+  .strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .strategy-points{list-style:none}
+  .strategy-points li{display:flex;gap:18px;margin-bottom:26px;align-items:flex-start}
+  .strategy-num{background:var(--black);color:var(--yellow);width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:19px;flex-shrink:0}
+  .strategy-content h4{font-size:19px;margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-.3px}
+  .strategy-content p{color:var(--gray-dark);font-size:14px}
+  .strategy-visual{background:var(--black);padding:50px 38px;color:var(--white);position:relative}
+  .strategy-visual::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:var(--yellow)}
+  .strategy-visual h3{font-size:32px;margin-bottom:18px}
+  .strategy-visual h3 .accent{color:var(--yellow)}
+  .strategy-visual p{color:var(--gray-light);font-size:15px;font-weight:300;margin-bottom:20px}
+  .strategy-quote{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:600;color:var(--yellow);font-style:italic;padding-top:20px;border-top:2px solid rgba(245,184,0,.3)}
+
+  /* SECÇÃO PARCEIROS/REDE */
+  .partners-banner{background:var(--black);padding:80px 40px;position:relative;overflow:hidden;color:var(--white)}
+  .partners-banner::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1579547945413-497e1b99dac0?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;opacity:.08;filter:grayscale(100%)}
+  .partners-banner::after{content:'';position:absolute;top:-100px;left:-100px;width:300px;height:300px;background:var(--yellow);opacity:.06;border-radius:50%}
+  .partners-content{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+  .partners-header{text-align:center;margin-bottom:40px}
+  .partners-header h3{font-size:36px;margin-bottom:12px;color:var(--white)}
+  .partners-header h3 .accent{color:var(--yellow)}
+  .partners-header p{font-size:15px;color:var(--gray-light);max-width:640px;margin:0 auto;font-weight:300}
+  .partners-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+  .partner-item{background:rgba(255,255,255,.04);border:1px solid rgba(245,184,0,.2);padding:24px 20px;text-align:center;transition:all .3s;backdrop-filter:blur(10px)}
+  .partner-item:hover{border-color:var(--yellow);background:rgba(245,184,0,.08);transform:translateY(-3px)}
+  .partner-item-label{color:var(--yellow);font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.5px;margin-bottom:4px}
+  .partner-item-desc{color:var(--gray-light);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+
+  /* NEWSROOM */
+  #news{background:var(--white)}
+  .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .news-card{background:var(--white);border:1px solid var(--gray-light);transition:all .3s;cursor:pointer;overflow:hidden}
+  .news-card:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(0,0,0,.08);border-color:var(--yellow)}
+  .news-img{height:200px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+  .news-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,26,.3) 0%,rgba(26,26,26,.75) 100%)}
+  .news-img .news-category{position:absolute;top:16px;left:16px;background:var(--yellow);color:var(--black);padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;z-index:2}
+  .news-content{padding:22px}
+  .news-date{color:var(--gray);font-size:12px;font-weight:500;margin-bottom:8px}
+  .news-content h4{font-size:18px;margin-bottom:10px;line-height:1.3}
+  .news-content p{color:var(--gray-dark);font-size:13px;margin-bottom:14px}
+  .news-link{color:var(--yellow-dark);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.5px}
+
+  /* CONTACTOS */
+  #contactos{background:var(--gray-bg);position:relative}
+  #contactos::before{content:'';position:absolute;top:0;left:0;width:100%;height:300px;background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;opacity:.08;filter:grayscale(60%)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px}
+  .contact-info-wrap{background:var(--white);padding:40px;border-top:4px solid var(--yellow)}
+  .contact-info h3{font-size:30px;margin-bottom:16px}
+  .contact-info p.intro{color:var(--gray-dark);margin-bottom:32px;font-size:15px}
+  .contact-item{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start}
+  .contact-icon{width:44px;height:44px;background:var(--yellow);color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:18px}
+  .contact-item h5{font-size:13px;font-weight:700;margin-bottom:4px;letter-spacing:.5px;text-transform:uppercase}
+  .contact-item p{color:var(--gray-dark);font-size:14px;margin:0;line-height:1.6}
+  .contact-item a{color:var(--gray-dark);text-decoration:none;transition:color .2s}
+  .contact-item a:hover{color:var(--yellow-dark)}
+  .contact-form{background:var(--white);padding:40px;border-top:4px solid var(--yellow)}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  .form-group{margin-bottom:14px}
+  .form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;color:var(--gray-dark)}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1px solid var(--gray-light);background:var(--white);font-family:inherit;font-size:14px;transition:all .2s;border-radius:2px}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 3px rgba(245,184,0,.15)}
+  .form-group textarea{min-height:110px;resize:vertical}
+  .form-submit{width:100%;padding:15px;background:var(--black);color:var(--white);border:none;font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+  .form-submit:hover{background:var(--yellow);color:var(--black)}
+  .form-success{background:var(--yellow);color:var(--black);padding:14px;text-align:center;font-weight:600;margin-bottom:14px;display:none;font-size:13px}
+  .form-success.show{display:block}
+
+  /* FOOTER */
+  footer{background:var(--black);color:var(--white);padding:60px 40px 30px}
+  .footer-container{max-width:1400px;margin:0 auto}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:50px;margin-bottom:40px}
+  .footer-brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .footer-about p{color:var(--gray-light);font-size:13px;line-height:1.7;font-weight:300;max-width:380px}
+  .footer-col h5{color:var(--yellow);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+  .footer-col a{display:block;color:var(--gray-light);text-decoration:none;font-size:13px;margin-bottom:10px;transition:color .2s}
+  .footer-col a:hover{color:var(--yellow)}
+  .footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--gray);flex-wrap:wrap;gap:14px}
+
+  /* Animations */
+  .fade-in{opacity:0;transform:translateY(30px);transition:all .8s}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  /* Responsive */
+  @media(max-width:968px){
+    .topbar{flex-direction:column;gap:6px;padding:8px 20px;text-align:center}
+    .topbar-info{flex-direction:column;gap:4px}
+    .menu-toggle{display:block;color:var(--black)}
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;padding:20px;gap:16px;border-top:1px solid var(--gray-light);box-shadow:0 10px 30px rgba(0,0,0,.1)}
+    .nav-links.open{display:flex}
+    .nav-cta{display:none}
+    .hero-container{grid-template-columns:1fr;gap:40px}
+    .hero h1{font-size:44px}
+    .hero-visual{order:-1;max-width:280px;margin:0 auto}
+    .hero-stats{margin-top:0;grid-template-columns:repeat(2,1fr)}
+    .stat{border-right:none;border-bottom:1px solid var(--gray-light)}
+    .stat:nth-child(odd){border-right:1px solid var(--gray-light)}
+    .stat:nth-last-child(-n+2){border-bottom:none}
+    section{padding:70px 20px}
+    .section-title{font-size:34px}
+    .about-grid,.strategy-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+    .footer-bottom{flex-direction:column;text-align:center}
+    .form-row{grid-template-columns:1fr}
+    .cluster-header{flex-wrap:wrap}
+    .cluster-title h3{font-size:24px}
+    .timeline::before{left:20px}
+    .milestone{width:100%;padding-left:55px;padding-right:10px;text-align:left!important;left:0!important}
+    .milestone-dot{left:11px!important;right:auto!important}
+    .denuncia-box{grid-template-columns:1fr;text-align:center;gap:20px}
+    .denuncia-cta{justify-self:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-info">
+    <span data-pt="📍 Luanda · Lisboa · Joanesburgo" data-en="📍 Luanda · Lisbon · Johannesburg">📍 Luanda · Lisboa · Joanesburgo</span>
+    <span>📞 <a href="tel:+244922300840">(+244) 922 300 840</a></span>
+    <span>✉ <a href="mailto:geral@sonsassets.ao">geral@sonsassets.ao</a></span>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('pt')">PT</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo">
+      <svg class="logo-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="20,25 50,10 80,25 80,75 50,90 20,75" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2"/>
+        <path d="M 30 35 L 45 35 L 40 45 L 55 45 L 48 55 L 62 55" stroke="#FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="square"/>
+        <text x="50" y="62" font-family="Arial Black" font-size="30" font-weight="900" fill="#F5B800" text-anchor="middle">S</text>
+      </svg>
+      <div class="logo-text">
+        <span class="sons">SONS</span><span class="assets">ASSETS</span>
+        <span class="logo-tagline" data-pt="SGPS — Gestão de Participações Sociais, SA" data-en="SGPS — Holding Company, SA">SGPS — Gestão de Participações Sociais, SA</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+      <li><a href="#marcos" data-pt="Marcos" data-en="Milestones">Marcos</a></li>
+      <li><a href="#estrutura" data-pt="Estrutura" data-en="Structure">Estrutura</a></li>
+      <li><a href="#portefolio" data-pt="Portefólio" data-en="Portfolio">Portefólio</a></li>
+      <li><a href="#financeiras" data-pt="Financeiras" data-en="Financials">Financeiras</a></li>
+      <li><a href="#governance" data-pt="Governance" data-en="Governance">Governance</a></li>
+      <li><a href="#contactos" data-pt="Contactos" data-en="Contact">Contactos</a></li>
+    </ul>
+    <a href="#contactos" class="nav-cta" data-pt="Fale Connosco" data-en="Contact Us">Fale Connosco</a>
+    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-image"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-container">
+    <div class="hero-content">
+      <span class="eyebrow" data-pt="Holding Multissetorial" data-en="Multi-sector Holding">Holding Multissetorial</span>
+      <h1 data-pt-html="Investimento<br>estratégico.<br><span class='accent'>Valor duradouro.</span>" data-en-html="Strategic<br>investment.<br><span class='accent'>Lasting value.</span>">Investimento<br>estratégico.<br><span class="accent">Valor duradouro.</span></h1>
+      <p class="lead" data-pt="Sons Assets SGPS é uma holding angolana com participações diversificadas em serviços profissionais, retalho, distribuição e instituições financeiras de referência em Angola, Portugal e África do Sul. Unidos pelos valores de solidez, gestão e dinamismo." data-en="Sons Assets SGPS is an Angolan holding company with diversified interests across professional services, retail, distribution and leading financial institutions in Angola, Portugal and South Africa. United by the values of solidity, management and dynamism.">Sons Assets SGPS é uma holding angolana com participações diversificadas em serviços profissionais, retalho, distribuição e instituições financeiras de referência em Angola, Portugal e África do Sul. Unidos pelos valores de solidez, gestão e dinamismo.</p>
+      <div class="hero-cta-group">
+        <a href="#portefolio" class="btn btn-primary" data-pt="Conheça o portefólio →" data-en="Explore our portfolio →">Conheça o portefólio →</a>
+        <a href="#contactos" class="btn btn-outline" data-pt="Contacte-nos" data-en="Contact us">Contacte-nos</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="hero-logo-large" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="70,110 200,40 330,110 330,290 200,360 70,290" fill="#1A1A1A"/>
+        <path d="M 110 150 L 185 150 L 160 195 L 235 195 L 200 245 L 280 245" stroke="#FFFFFF" stroke-width="14" fill="none" stroke-linecap="square"/>
+        <text x="200" y="260" font-family="Arial Black" font-size="130" font-weight="900" fill="#F5B800" text-anchor="middle">S</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="hero-stats">
+  <div class="stat">
+    <div class="stat-num">3<span class="sm">+</span></div>
+    <div class="stat-label" data-pt="Jurisdições" data-en="Jurisdictions">Jurisdições</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">6</div>
+    <div class="stat-label" data-pt="Part. Operacionais" data-en="Operating Holdings">Part. Operacionais</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5</div>
+    <div class="stat-label" data-pt="Part. Financeiras" data-en="Financial Holdings">Part. Financeiras</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">25<span class="sm">+</span></div>
+    <div class="stat-label" data-pt="Anos de Experiência" data-en="Years of Experience">Anos de Experiência</div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Quem Somos" data-en="Who We Are">Quem Somos</span>
+      <h2 class="section-title" data-pt-html="Uma holding com <span class='accent'>visão global</span>" data-en-html="A holding with <span class='accent'>global vision</span>">Uma holding com <span class="accent">visão global</span></h2>
+      <p class="section-subtitle" data-pt="Criação de valor através de investimentos criteriosos e gestão activa de participações em sectores-chave da economia." data-en="Creating value through disciplined investment and active management of stakes in key economic sectors.">Criação de valor através de investimentos criteriosos e gestão activa de participações em sectores-chave da economia.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <h3 data-pt="A nossa filosofia" data-en="Our philosophy">A nossa filosofia</h3>
+        <p data-pt="A Sons Assets SGPS, S.A. é a sociedade gestora de participações sociais que agrega um portefólio diversificado de negócios operacionais e activos financeiros. Operamos com uma visão de longo prazo, privilegiando a sustentabilidade, a governança robusta e o rigor técnico em todas as nossas participadas." data-en="Sons Assets SGPS, S.A. is the holding company that aggregates a diversified portfolio of operating businesses and financial assets. We operate with a long-term vision, prioritising sustainability, robust governance and technical rigour across all our holdings.">A Sons Assets SGPS, S.A. é a sociedade gestora de participações sociais que agrega um portefólio diversificado de negócios operacionais e activos financeiros. Operamos com uma visão de longo prazo, privilegiando a sustentabilidade, a governança robusta e o rigor técnico em todas as nossas participadas.</p>
+        <p data-pt-html="O nosso modelo combina <strong>gestão activa</strong> de empresas operacionais com <strong>investimento institucional</strong> em instituições financeiras de referência, assegurando equilíbrio entre crescimento, rendimento e preservação de capital." data-en-html="Our model combines <strong>active management</strong> of operating companies with <strong>institutional investment</strong> in leading financial institutions, ensuring a balance between growth, yield and capital preservation.">O nosso modelo combina <strong>gestão activa</strong> de empresas operacionais com <strong>investimento institucional</strong> em instituições financeiras de referência, assegurando equilíbrio entre crescimento, rendimento e preservação de capital.</p>
+
+        <div class="values">
+          <div class="value-card">
+            <h4 data-pt="Rigor" data-en="Rigour">Rigor</h4>
+            <p data-pt="Excelência técnica e ética profissional em todas as decisões." data-en="Technical excellence and professional ethics in every decision.">Excelência técnica e ética profissional em todas as decisões.</p>
+          </div>
+          <div class="value-card">
+            <h4 data-pt="Visão" data-en="Vision">Visão</h4>
+            <p data-pt="Investimento de longo prazo com horizonte estratégico claro." data-en="Long-term investment with a clear strategic horizon.">Investimento de longo prazo com horizonte estratégico claro.</p>
+          </div>
+          <div class="value-card">
+            <h4 data-pt="Integridade" data-en="Integrity">Integridade</h4>
+            <p data-pt="Transparência, compliance e governança irrepreensível." data-en="Transparency, compliance and impeccable governance.">Transparência, compliance e governança irrepreensível.</p>
+          </div>
+          <div class="value-card">
+            <h4 data-pt="Diversificação" data-en="Diversification">Diversificação</h4>
+            <p data-pt="Portefólio equilibrado entre sectores e jurisdições." data-en="Balanced portfolio across sectors and jurisdictions.">Portefólio equilibrado entre sectores e jurisdições.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="presence-map fade-in">
+        <h4 data-pt="Presença Geográfica" data-en="Geographical Presence">Presença Geográfica</h4>
+        <div class="presence-list">
+          <div class="presence-item">
+            <span class="presence-flag">🇦🇴</span>
+            <div class="presence-info">
+              <h5 data-pt="Angola" data-en="Angola">Angola</h5>
+              <p data-pt="Sede · Core market · Serviços & Retalho" data-en="Headquarters · Core market · Services & Retail">Sede · Core market · Serviços & Retalho</p>
+            </div>
+          </div>
+          <div class="presence-item">
+            <span class="presence-flag">🇵🇹</span>
+            <div class="presence-info">
+              <h5 data-pt="Portugal" data-en="Portugal">Portugal</h5>
+              <p data-pt="Plataforma europeia · Distribuição" data-en="European platform · Distribution">Plataforma europeia · Distribuição</p>
+            </div>
+          </div>
+          <div class="presence-item">
+            <span class="presence-flag">🇿🇦</span>
+            <div class="presence-info">
+              <h5 data-pt="África do Sul" data-en="South Africa">África do Sul</h5>
+              <p data-pt="Plataforma austral · Consultoria & Gestão" data-en="Southern African platform · Consulting & Management">Plataforma austral · Consultoria & Gestão</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER IMPACTO -->
+<div class="impact-banner">
+  <div class="impact-content fade-in">
+    <span class="eyebrow" data-pt="Angola · Portugal · África do Sul" data-en="Angola · Portugal · South Africa">Angola · Portugal · África do Sul</span>
+    <h2 data-pt-html="Construímos <span class='accent'>valor duradouro</span><br>no espaço lusófono." data-en-html="Building <span class='accent'>lasting value</span><br>across the lusophone space.">Construímos <span class="accent">valor duradouro</span><br>no espaço lusófono.</h2>
+    <p data-pt="Uma plataforma multi-jurisdicional com raízes em Angola e ambição global, investindo em sectores que sustentam o desenvolvimento económico." data-en="A multi-jurisdictional platform rooted in Angola with global ambition, investing in sectors that drive economic development.">Uma plataforma multi-jurisdicional com raízes em Angola e ambição global, investindo em sectores que sustentam o desenvolvimento económico.</p>
+  </div>
+</div>
+
+<!-- MARCOS (TIMELINE) -->
+<section id="marcos">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Nossa Trajectória" data-en="Our Journey">Nossa Trajectória</span>
+      <h2 class="section-title" data-pt-html="Marcos que <span class='accent'>definiram</span> o grupo" data-en-html="Milestones that <span class='accent'>shaped</span> the group">Marcos que <span class="accent">definiram</span> o grupo</h2>
+      <p class="section-subtitle" data-pt="Um percurso construído com rigor, visão e crescimento consistente ao longo das últimas décadas." data-en="A journey built with rigour, vision and consistent growth over recent decades.">Um percurso construído com rigor, visão e crescimento consistente ao longo das últimas décadas.</p>
+    </div>
+
+    <div class="timeline fade-in">
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-content">
+          <div class="milestone-year">2008</div>
+          <h4 data-pt="Fundação da SEGCONTAS" data-en="SEGCONTAS founded">Fundação da SEGCONTAS</h4>
+          <p data-pt="Constituição da SEGCONTAS Consultores e Auditores, Lda. em Luanda, Angola — o embrião do grupo." data-en="Incorporation of SEGCONTAS Consultores e Auditores, Lda. in Luanda, Angola — the group's foundation.">Constituição da SEGCONTAS Consultores e Auditores, Lda. em Luanda, Angola — o embrião do grupo.</p>
+        </div>
+      </div>
+
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-content">
+          <div class="milestone-year">2013</div>
+          <h4 data-pt="Diversificação para o retalho" data-en="Diversification into retail">Diversificação para o retalho</h4>
+          <p data-pt="Constituição da Yokane Gestão e Empreendimentos, Lda., marcando a entrada no sector do retalho e gestão imobiliária." data-en="Incorporation of Yokane Gestão e Empreendimentos, Lda., marking entry into retail and real estate management.">Constituição da Yokane Gestão e Empreendimentos, Lda., marcando a entrada no sector do retalho e gestão imobiliária.</p>
+        </div>
+      </div>
+
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-content">
+          <div class="milestone-year">2015</div>
+          <h4 data-pt="Expansão para a África Austral" data-en="Expansion into Southern Africa">Expansão para a África Austral</h4>
+          <p data-pt="Abertura da SEGCONTAS Business and Management (PTY) Ltd em Joanesburgo, iniciando a plataforma internacional." data-en="Opening of SEGCONTAS Business and Management (PTY) Ltd in Johannesburg, launching the international platform.">Abertura da SEGCONTAS Business and Management (PTY) Ltd em Joanesburgo, iniciando a plataforma internacional.</p>
+        </div>
+      </div>
+
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-content">
+          <div class="milestone-year">2017</div>
+          <h4 data-pt="Reforço da cadeia de valor" data-en="Strengthening the value chain">Reforço da cadeia de valor</h4>
+          <p data-pt="Constituição da Gabizone Distribuição, Lda., consolidando a capacidade logística e de distribuição em Angola." data-en="Incorporation of Gabizone Distribuição, Lda., consolidating logistics and distribution capabilities in Angola.">Constituição da Gabizone Distribuição, Lda., consolidando a capacidade logística e de distribuição em Angola.</p>
+        </div>
+      </div>
+
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-content">
+          <div class="milestone-year">2018</div>
+          <h4 data-pt="Plataforma europeia" data-en="European platform">Plataforma europeia</h4>
+          <p data-pt="Constituição da Yokane Distribuição (Portugal), Lda. — porta de entrada no mercado europeu e espaço lusófono." data-en="Incorporation of Yokane Distribuição (Portugal), Lda. — gateway to the European market and lusophone space.">Constituição da Yokane Distribuição (Portugal), Lda. — porta de entrada no mercado europeu e espaço lusófono.</p>
+        </div>
+      </div>
+
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-content">
+          <div class="milestone-year">2024</div>
+          <h4 data-pt="Constituição da Sons Assets SGPS" data-en="Incorporation of Sons Assets SGPS">Constituição da Sons Assets SGPS</h4>
+          <p data-pt="Criação da holding e consolidação formal do portefólio operacional e financeiro do grupo numa única estrutura." data-en="Creation of the holding company and formal consolidation of the group's operating and financial portfolio into a single structure.">Criação da holding e consolidação formal do portefólio operacional e financeiro do grupo numa única estrutura.</p>
+        </div>
+      </div>
+
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-content">
+          <div class="milestone-year">2026</div>
+          <h4 data-pt="Novo capítulo institucional" data-en="New institutional chapter">Novo capítulo institucional</h4>
+          <p data-pt="Lançamento do novo website institucional e reforço da estratégia de comunicação corporativa multi-jurisdicional." data-en="Launch of the new institutional website and strengthening of multi-jurisdictional corporate communication strategy.">Lançamento do novo website institucional e reforço da estratégia de comunicação corporativa multi-jurisdicional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRUTURA / ORGANOGRAMA -->
+<section id="estrutura">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Estrutura do Grupo" data-en="Group Structure">Estrutura do Grupo</span>
+      <h2 class="section-title" data-pt-html="Organograma <span class='accent'>corporativo</span>" data-en-html="Corporate <span class='accent'>structure</span>">Organograma <span class="accent">corporativo</span></h2>
+      <p class="section-subtitle" data-pt="Visão integrada das participações operacionais e financeiras da Sons Assets SGPS, S.A." data-en="Integrated view of Sons Assets SGPS, S.A.'s operating and financial holdings.">Visão integrada das participações operacionais e financeiras da Sons Assets SGPS, S.A.</p>
+    </div>
+
+    <div class="org-chart fade-in">
+      <div class="org-level">
+        <div class="org-parent">
+          <h4>SONS ASSETS SGPS, S.A.</h4>
+          <p data-pt="Holding · Luanda · Viana" data-en="Holding · Luanda · Viana">Holding · Luanda · Viana</p>
+        </div>
+      </div>
+      <div class="org-connector"></div>
+
+      <h4 style="text-align:center;font-size:14px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;font-family:'Inter',sans-serif;font-weight:700" data-pt="Participações Operacionais" data-en="Operating Holdings">Participações Operacionais</h4>
+
+      <div class="org-children">
+        <div class="org-child">
+          <span class="flag">🇦🇴</span>
+          <strong>SEGCONTAS</strong>
+          <span class="sector" data-pt="Auditoria · 2008" data-en="Audit · 2008">Auditoria · 2008</span>
+        </div>
+        <div class="org-child">
+          <span class="flag">🇦🇴</span>
+          <strong>Yokane / Baratuxu</strong>
+          <span class="sector" data-pt="Retalho · 2013" data-en="Retail · 2013">Retalho · 2013</span>
+        </div>
+        <div class="org-child">
+          <span class="flag">🇿🇦</span>
+          <strong>SEGCONTAS B&amp;M</strong>
+          <span class="sector" data-pt="Consultoria · 2015" data-en="Consulting · 2015">Consultoria · 2015</span>
+        </div>
+        <div class="org-child">
+          <span class="flag">🇦🇴</span>
+          <strong>Gabizone</strong>
+          <span class="sector" data-pt="Distribuição · 2017" data-en="Distribution · 2017">Distribuição · 2017</span>
+        </div>
+        <div class="org-child">
+          <span class="flag">🇵🇹</span>
+          <strong>Yokane Portugal</strong>
+          <span class="sector" data-pt="Distribuição · 2018" data-en="Distribution · 2018">Distribuição · 2018</span>
+        </div>
+      </div>
+
+      <div style="height:40px"></div>
+
+      <h4 style="text-align:center;font-size:14px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;font-family:'Inter',sans-serif;font-weight:700" data-pt="Participações Financeiras" data-en="Financial Holdings">Participações Financeiras</h4>
+
+      <div class="org-children" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));max-width:900px">
+        <div class="org-child" style="border-top-color:var(--black)">
+          <strong>BAI</strong>
+          <span class="sector" data-pt="Banca" data-en="Banking">Banca</span>
+        </div>
+        <div class="org-child" style="border-top-color:var(--black)">
+          <strong>BFA</strong>
+          <span class="sector" data-pt="Banca" data-en="Banking">Banca</span>
+        </div>
+        <div class="org-child" style="border-top-color:var(--black)">
+          <strong>BCGA</strong>
+          <span class="sector" data-pt="Banca" data-en="Banking">Banca</span>
+        </div>
+        <div class="org-child" style="border-top-color:var(--black)">
+          <strong>ENSA</strong>
+          <span class="sector" data-pt="Seguros" data-en="Insurance">Seguros</span>
+        </div>
+        <div class="org-child" style="border-top-color:var(--black);opacity:.85">
+          <strong>Protteja Seguros</strong>
+          <span class="sector" data-pt="Via SEGCONTAS" data-en="Via SEGCONTAS">Via SEGCONTAS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTEFÓLIO -->
+<section id="portefolio">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="O Nosso Portefólio" data-en="Our Portfolio">O Nosso Portefólio</span>
+      <h2 class="section-title" data-pt-html="Participações <span class='accent'>Operacionais</span>" data-en-html="Operating <span class='accent'>Holdings</span>">Participações <span class="accent">Operacionais</span></h2>
+      <p class="section-subtitle" data-pt="Empresas sob gestão activa, organizadas em três clusters estratégicos que reflectem a nossa tese de investimento." data-en="Actively managed companies, organised into three strategic clusters that reflect our investment thesis.">Empresas sob gestão activa, organizadas em três clusters estratégicos que reflectem a nossa tese de investimento.</p>
+    </div>
+
+    <!-- Cluster 1 -->
+    <div class="cluster fade-in">
+      <div class="cluster-header">
+        <div class="cluster-num">01</div>
+        <div class="cluster-title">
+          <h3 data-pt="Serviços Profissionais" data-en="Professional Services">Serviços Profissionais</h3>
+          <p data-pt="Auditoria · Consultoria · Compliance" data-en="Audit · Consulting · Compliance">Auditoria · Consultoria · Compliance</p>
+        </div>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-header">
+            <div class="portfolio-logo">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="85" fill="#B5B5B5"/>
+                <g opacity="0.6">
+                  <path d="M 30 100 Q 100 50 170 100" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+                  <path d="M 30 100 Q 100 150 170 100" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+                  <line x1="100" y1="15" x2="100" y2="185" stroke="#FFFFFF" stroke-width="2"/>
+                  <line x1="15" y1="100" x2="185" y2="100" stroke="#FFFFFF" stroke-width="2"/>
+                </g>
+                <text x="100" y="130" font-family="Arial Black" font-size="120" font-weight="900" fill="#E85A2C" text-anchor="middle">C</text>
+                <line x1="30" y1="100" x2="170" y2="100" stroke="#E85A2C" stroke-width="8"/>
+              </svg>
+            </div>
+            <span class="portfolio-flag">🇦🇴</span>
+          </div>
+          <h4>SEGCONTAS — Consultores e Auditores, Lda</h4>
+          <span class="portfolio-sector" data-pt="Auditoria & Consultoria" data-en="Audit & Consulting">Auditoria & Consultoria</span>
+          <p class="portfolio-desc" data-pt="Firma angolana de auditoria e consultoria com mais de uma década e meia de experiência em sectores regulados — petróleo e gás, banca e seguros — servindo grupos nacionais e multinacionais." data-en="Angolan audit and consulting firm with over fifteen years of experience in regulated sectors — oil & gas, banking and insurance — serving national and multinational groups.">Firma angolana de auditoria e consultoria com mais de uma década e meia de experiência em sectores regulados — petróleo e gás, banca e seguros — servindo grupos nacionais e multinacionais.</p>
+          <div class="portfolio-meta">
+            <span>OCPCA Nº 20152507 · Praxity</span>
+            <span class="portfolio-year" data-pt="Fundada 2008" data-en="Est. 2008">Fundada 2008</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 2 -->
+    <div class="cluster fade-in">
+      <div class="cluster-header">
+        <div class="cluster-num">02</div>
+        <div class="cluster-title">
+          <h3 data-pt="Retalho & Distribuição Alimentar" data-en="Retail & Food Distribution">Retalho & Distribuição Alimentar</h3>
+          <p data-pt="Supermercados · Distribuição FMCG · Angola" data-en="Supermarkets · FMCG Distribution · Angola">Supermercados · Distribuição FMCG · Angola</p>
+        </div>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-header">
+            <div class="portfolio-logo">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="#FFFFFF"/>
+                <g transform="translate(100,80)">
+                  <!-- Triângulo invertido Yokane -->
+                  <polygon points="-50,-40 50,-40 0,40" fill="#000000"/>
+                  <polygon points="-50,-40 0,-40 0,40" fill="#3D3D3D"/>
+                  <polygon points="0,-40 50,-40 0,40" fill="#EFCB2D"/>
+                </g>
+                <text x="100" y="155" font-family="Georgia" font-size="24" font-weight="400" fill="#000000" text-anchor="middle">Yokane</text>
+                <text x="100" y="175" font-family="Arial" font-size="9" font-weight="400" fill="#3D3D3D" text-anchor="middle" letter-spacing="1">Gestão e Empreendimentos</text>
+              </svg>
+            </div>
+            <span class="portfolio-flag">🇦🇴</span>
+          </div>
+          <h4>Yokane Gestão e Empreendimentos / Baratuxu Supermercados</h4>
+          <span class="portfolio-sector" data-pt="Retalho Alimentar" data-en="Food Retail">Retalho Alimentar</span>
+          <p class="portfolio-desc" data-pt="Yokane opera no segmento de gestão e empreendimentos imobiliários comerciais, detendo a marca Baratuxu Supermercados — cadeia de retalho alimentar de proximidade focada no abastecimento do mercado urbano angolano." data-en="Yokane operates in real estate management and commercial ventures, owning the Baratuxu Supermercados brand — a neighbourhood food retail chain focused on supplying the Angolan urban market.">Yokane opera no segmento de gestão e empreendimentos imobiliários comerciais, detendo a marca Baratuxu Supermercados — cadeia de retalho alimentar de proximidade focada no abastecimento do mercado urbano angolano.</p>
+          <div class="portfolio-meta">
+            <span>Luanda · Operacional</span>
+            <span class="portfolio-year" data-pt="Fundada 2013" data-en="Est. 2013">Fundada 2013</span>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-header">
+            <div class="portfolio-logo">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="#FFFFFF"/>
+                <g transform="translate(100,85)">
+                  <polygon points="-40,-40 40,-40 40,0 20,0 20,-20 0,-20 0,40 -40,40" fill="#E4002B"/>
+                  <polygon points="40,-40 40,0 20,0 20,-20" fill="#E4002B"/>
+                  <polygon points="-40,40 0,40 0,20 20,20 20,40 40,40 40,-40 0,0 -40,0" fill="none"/>
+                  <polygon points="0,-20 20,-20 20,0 40,0 40,40 0,40 0,20 -20,20 -20,0" fill="#E4002B"/>
+                </g>
+                <text x="100" y="165" font-family="Arial" font-size="22" font-weight="700" fill="#0D1B33" text-anchor="middle" letter-spacing="2">GABIZONE</text>
+              </svg>
+            </div>
+            <span class="portfolio-flag">🇦🇴</span>
+          </div>
+          <h4>Gabizone Distribuição, Lda</h4>
+          <span class="portfolio-sector" data-pt="Distribuição" data-en="Distribution">Distribuição</span>
+          <p class="portfolio-desc" data-pt="Operador logístico e distribuidor de bens de grande consumo no mercado angolano, com foco em canais modernos e tradicionais." data-en="Logistics operator and distributor of fast-moving consumer goods in the Angolan market, focused on modern and traditional channels.">Operador logístico e distribuidor de bens de grande consumo no mercado angolano, com foco em canais modernos e tradicionais.</p>
+          <div class="portfolio-meta">
+            <span data-pt="Angola · Cadeia abastecimento" data-en="Angola · Supply chain">Angola · Cadeia abastecimento</span>
+            <span class="portfolio-year" data-pt="Fundada 2017" data-en="Est. 2017">Fundada 2017</span>
+          </div>
+        </div>
+      </div>
+      <!-- Brand Spotlight Baratuxu -->
+      <div class="brand-spotlight fade-in" style="margin-top:40px;padding:40px">
+        <div class="brand-spotlight-content">
+          <div class="brand-spotlight-logo">
+            <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+              <!-- Logo Baratuxu: triângulo invertido preto/amarelo + texto -->
+              <g transform="translate(200,55)">
+                <polygon points="-28,-30 28,-30 0,25" fill="#3D3D3D"/>
+                <polygon points="0,-30 28,-30 0,25" fill="#EFCB2D"/>
+              </g>
+              <text x="200" y="140" font-family="Arial Black" font-size="50" font-weight="900" fill="#EFCB2D" text-anchor="middle" letter-spacing="2">BARATUXU</text>
+            </svg>
+          </div>
+          <div class="brand-spotlight-info">
+            <span class="tag" data-pt="Marca Comercial" data-en="Consumer Brand">Marca Comercial</span>
+            <span class="tag" data-pt="Retalho Alimentar" data-en="Food Retail">Retalho Alimentar</span>
+            <h3 data-pt-html="Baratuxu <span class='accent'>Supermercados</span>" data-en-html="Baratuxu <span class='accent'>Supermarkets</span>">Baratuxu <span class="accent">Supermercados</span></h3>
+            <p data-pt="Marca comercial operada pela Yokane Gestão e Empreendimentos, a Baratuxu Supermercados é a bandeira de retalho alimentar do grupo, presente no mercado angolano com foco em proximidade, qualidade e preços competitivos." data-en="Operated by Yokane Gestão e Empreendimentos, Baratuxu Supermercados is the group's food retail flagship in the Angolan market, focused on proximity, quality and competitive pricing.">Marca comercial operada pela Yokane Gestão e Empreendimentos, a Baratuxu Supermercados é a bandeira de retalho alimentar do grupo, presente no mercado angolano com foco em proximidade, qualidade e preços competitivos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 3 -->
+    <div class="cluster fade-in">
+      <div class="cluster-header">
+        <div class="cluster-num">03</div>
+        <div class="cluster-title">
+          <h3 data-pt="Distribuição Internacional" data-en="International Distribution">Distribuição Internacional</h3>
+          <p data-pt="Plataforma europeia e austral" data-en="European and Southern African platform">Plataforma europeia e austral</p>
+        </div>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-header">
+            <div class="portfolio-logo">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="#FFFFFF"/>
+                <g transform="translate(100,75)">
+                  <!-- Cubo Yokane Portugal (do brandbook) -->
+                  <polygon points="-40,-20 0,-40 40,-20 0,0" fill="#1A2D6B" stroke="#1A2D6B" stroke-width="1"/>
+                  <polygon points="-40,-20 0,0 0,40 -40,20" fill="#2B4080" stroke="#1A2D6B" stroke-width="1"/>
+                  <polygon points="40,-20 0,0 0,40 40,20" fill="#3A5FD9" stroke="#1A2D6B" stroke-width="1"/>
+                  <!-- Cubo interior destaque -->
+                  <polygon points="-15,-8 0,-15 15,-8 0,0" fill="#5B7FE0"/>
+                  <polygon points="-15,-8 0,0 0,15 -15,8" fill="#3A5FD9"/>
+                  <polygon points="15,-8 0,0 0,15 15,8" fill="#7B9FFF"/>
+                </g>
+                <text x="100" y="155" font-family="Arial" font-size="20" font-weight="600" fill="#1A2D6B" text-anchor="middle">Yokane</text>
+                <text x="100" y="175" font-family="Arial" font-size="9" font-weight="400" fill="#3A5FD9" text-anchor="middle" letter-spacing=".5">Distribuição (Portugal)</text>
+              </svg>
+            </div>
+            <span class="portfolio-flag">🇵🇹</span>
+          </div>
+          <h4>Yokane Distribuição (Portugal), Lda</h4>
+          <span class="portfolio-sector" data-pt="Distribuição · Europa" data-en="Distribution · Europe">Distribuição · Europa</span>
+          <p class="portfolio-desc" data-pt="Plataforma de distribuição em Portugal que assegura o elo comercial entre fornecedores europeus e operações do grupo no espaço lusófono." data-en="Distribution platform in Portugal that bridges European suppliers and group operations across the lusophone space.">Plataforma de distribuição em Portugal que assegura o elo comercial entre fornecedores europeus e operações do grupo no espaço lusófono.</p>
+          <div class="portfolio-meta">
+            <span data-pt="Portugal · Operacional" data-en="Portugal · Active">Portugal · Operacional</span>
+            <span class="portfolio-year" data-pt="Fundada 2018" data-en="Est. 2018">Fundada 2018</span>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-header">
+            <div class="portfolio-logo">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="#FFFFFF"/>
+                <defs>
+                  <radialGradient id="blueGrad" cx="50%" cy="50%">
+                    <stop offset="0%" stop-color="#4A90E2"/>
+                    <stop offset="100%" stop-color="#1E5BA8"/>
+                  </radialGradient>
+                  <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#E8E8E8"/>
+                    <stop offset="50%" stop-color="#B0B0B0"/>
+                    <stop offset="100%" stop-color="#808080"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="100" cy="85" r="60" fill="url(#blueGrad)" stroke="#808080" stroke-width="2"/>
+                <circle cx="100" cy="85" r="45" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+                <text x="100" y="110" font-family="Arial Black" font-size="70" font-weight="900" fill="url(#silverGrad)" text-anchor="middle" stroke="#808080" stroke-width="1">S</text>
+                <text x="100" y="165" font-family="Arial Black" font-size="16" font-weight="900" fill="#1E5BA8" text-anchor="middle">SEGCONTAS</text>
+                <text x="100" y="182" font-family="Arial" font-size="9" font-weight="600" fill="#606060" text-anchor="middle" letter-spacing="1">B&amp;M</text>
+              </svg>
+            </div>
+            <span class="portfolio-flag">🇿🇦</span>
+          </div>
+          <h4>SEGCONTAS Business and Management (PTY) Ltd</h4>
+          <span class="portfolio-sector" data-pt="Consultoria & Gestão" data-en="Consulting & Management">Consultoria & Gestão</span>
+          <p class="portfolio-desc" data-pt="Braço de consultoria e gestão empresarial na África Austral, prestando serviços corporativos, fiscais e de management advisory ao mercado sul-africano e regional." data-en="Consulting and business management arm in Southern Africa, providing corporate, tax and management advisory services to the South African and regional market.">Braço de consultoria e gestão empresarial na África Austral, prestando serviços corporativos, fiscais e de management advisory ao mercado sul-africano e regional.</p>
+          <div class="portfolio-meta">
+            <span data-pt="África do Sul · Joanesburgo" data-en="South Africa · Johannesburg">África do Sul · Joanesburgo</span>
+            <span class="portfolio-year" data-pt="Fundada 2015" data-en="Est. 2015">Fundada 2015</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCEIRAS -->
+<section id="financeiras">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Participações Financeiras" data-en="Financial Holdings">Participações Financeiras</span>
+      <h2 class="section-title" data-pt-html="Investimentos em <span class='accent'>blue chips</span>" data-en-html="Investments in <span class='accent'>blue chips</span>">Investimentos em <span class="accent">blue chips</span></h2>
+      <p class="section-subtitle" data-pt="A Sons Assets SGPS detém participações estratégicas em instituições financeiras de referência no mercado angolano, reforçando a diversificação do portefólio e a exposição ao sector financeiro nacional." data-en="Sons Assets SGPS holds strategic stakes in leading financial institutions in the Angolan market, strengthening portfolio diversification and exposure to the national financial sector.">A Sons Assets SGPS detém participações estratégicas em instituições financeiras de referência no mercado angolano, reforçando a diversificação do portefólio e a exposição ao sector financeiro nacional.</p>
+    </div>
+
+    <div style="text-align:center;margin-bottom:30px;" class="fade-in">
+      <span class="fin-type-label" data-pt="🏦 Sector Bancário" data-en="🏦 Banking Sector">🏦 Sector Bancário</span>
+    </div>
+
+    <div class="fin-grid fade-in">
+      <div class="fin-card">
+        <div class="fin-logo-placeholder">BAI</div>
+        <h4>Banco BAI</h4>
+        <div class="fin-full">Banco Angolano de Investimentos, S.A.</div>
+        <div class="fin-desc" data-pt="Instituição de referência no mercado bancário nacional, com actuação consolidada em banca comercial e de investimento." data-en="Leading institution in the national banking market, with consolidated presence in commercial and investment banking.">Instituição de referência no mercado bancário nacional, com actuação consolidada em banca comercial e de investimento.</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-logo-placeholder">BFA</div>
+        <h4>BFA</h4>
+        <div class="fin-full">Banco de Fomento Angola, S.A.</div>
+        <div class="fin-desc" data-pt="Um dos maiores bancos do sistema financeiro angolano, com forte penetração no segmento corporativo e de retalho." data-en="One of the largest banks in the Angolan financial system, with strong penetration in corporate and retail segments.">Um dos maiores bancos do sistema financeiro angolano, com forte penetração no segmento corporativo e de retalho.</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-logo-placeholder">BCGA</div>
+        <h4>BCGA</h4>
+        <div class="fin-full">Banco Caixa Geral Angola, S.A.</div>
+        <div class="fin-desc" data-pt="Presença consolidada na banca comercial e corporativa, integrando o Grupo Caixa Geral de Depósitos." data-en="Consolidated presence in commercial and corporate banking, part of the Caixa Geral de Depósitos Group.">Presença consolidada na banca comercial e corporativa, integrando o Grupo Caixa Geral de Depósitos.</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:60px 0 30px;" class="fade-in">
+      <span class="fin-type-label" data-pt="🛡️ Sector Segurador" data-en="🛡️ Insurance Sector">🛡️ Sector Segurador</span>
+    </div>
+
+    <div class="fin-grid fade-in" style="grid-template-columns:repeat(auto-fit,minmax(260px,360px));justify-content:center">
+      <div class="fin-card">
+        <div class="fin-logo-placeholder">ENSA</div>
+        <h4>ENSA Seguros</h4>
+        <div class="fin-full">Empresa Nacional de Seguros de Angola, S.A.</div>
+        <div class="fin-desc" data-pt="Participação directa no maior operador segurador nacional, com ampla carteira de ramos vida e não-vida." data-en="Direct stake in the largest national insurance operator, with a broad life and non-life portfolio.">Participação directa no maior operador segurador nacional, com ampla carteira de ramos vida e não-vida.</div>
+      </div>
+    </div>
+
+    <div class="indirect-note fade-in" style="background:linear-gradient(135deg,rgba(8,88,95,.25) 0%,rgba(245,184,0,.1) 100%);border-left:4px solid #08585F">
+      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <div style="flex-shrink:0">
+          <svg width="80" height="80" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#08585F" rx="4"/>
+            <g transform="translate(100,95)">
+              <defs>
+                <linearGradient id="shieldG" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#4A7A80"/>
+                  <stop offset="50%" stop-color="#08585F"/>
+                  <stop offset="100%" stop-color="#043D42"/>
+                </linearGradient>
+              </defs>
+              <path d="M -35 -50 L 35 -50 L 35 10 Q 35 40 0 55 Q -35 40 -35 10 Z" fill="url(#shieldG)" stroke="#B0B0B0" stroke-width="2"/>
+              <text x="0" y="20" font-family="Georgia" font-size="60" font-weight="700" fill="#C8C8C8" text-anchor="middle">&amp;</text>
+            </g>
+            <text x="100" y="175" font-family="Georgia" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">PROTTEJA</text>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:280px">
+          <h5 data-pt="⚡ Participação Indirecta Estratégica" data-en="⚡ Strategic Indirect Holding">⚡ Participação Indirecta Estratégica</h5>
+          <p data-pt-html="Através da SEGCONTAS — Consultores e Auditores, Lda, a Sons Assets SGPS detém igualmente exposição à <strong style='color:var(--yellow)'>Protteja Seguros, S.A.</strong>, reforçando a presença do grupo no sector segurador angolano e criando sinergias entre as competências de auditoria, consultoria e gestão de risco." data-en-html="Through SEGCONTAS — Consultores e Auditores, Lda, Sons Assets SGPS also holds exposure to <strong style='color:var(--yellow)'>Protteja Seguros, S.A.</strong>, strengthening the group's presence in the Angolan insurance sector and creating synergies between audit, consulting and risk management competencies.">Através da SEGCONTAS — Consultores e Auditores, Lda, a Sons Assets SGPS detém igualmente exposição à <strong style="color:var(--yellow)">Protteja Seguros, S.A.</strong>, reforçando a presença do grupo no sector segurador angolano e criando sinergias entre as competências de auditoria, consultoria e gestão de risco.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:36px;color:var(--gray);font-size:12px;font-style:italic" class="fade-in" data-pt="Logos das instituições financeiras serão incorporados mediante autorização expressa." data-en="Logos of the financial institutions will be incorporated upon express authorisation.">Logos das instituições financeiras serão incorporados mediante autorização expressa.</p>
+  </div>
+</section>
+
+<!-- GOVERNANCE -->
+<section id="governance">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Governance Corporativo" data-en="Corporate Governance">Governance Corporativo</span>
+      <h2 class="section-title" data-pt-html="Transparência e <span class='accent'>rigor</span>" data-en-html="Transparency and <span class='accent'>rigour</span>">Transparência e <span class="accent">rigor</span></h2>
+      <p class="section-subtitle" data-pt="A nossa estrutura de governança assegura a integridade, a sustentabilidade e o alinhamento de interesses com todos os stakeholders." data-en="Our governance structure ensures integrity, sustainability and alignment of interests with all stakeholders.">A nossa estrutura de governança assegura a integridade, a sustentabilidade e o alinhamento de interesses com todos os stakeholders.</p>
+    </div>
+
+    <div class="gov-grid fade-in">
+      <div class="gov-card">
+        <div class="gov-number">01</div>
+        <h4 data-pt="Estrutura Societária" data-en="Corporate Structure">Estrutura Societária</h4>
+        <p data-pt="Modelo organizativo claro e auditado, com segregação de funções e linhas de reporte definidas." data-en="Clear, audited organisational model with segregation of duties and defined reporting lines.">Modelo organizativo claro e auditado, com segregação de funções e linhas de reporte definidas.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-number">02</div>
+        <h4 data-pt="Órgãos Sociais" data-en="Corporate Bodies">Órgãos Sociais</h4>
+        <p data-pt="Conselho de Administração, Assembleia Geral e Fiscal Único compostos por profissionais experientes." data-en="Board of Directors, General Meeting and Sole Auditor composed of experienced professionals.">Conselho de Administração, Assembleia Geral e Fiscal Único compostos por profissionais experientes.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-number">03</div>
+        <h4 data-pt="Compliance & Ética" data-en="Compliance & Ethics">Compliance & Ética</h4>
+        <p data-pt="Políticas rigorosas de compliance, anti-corrupção, prevenção de branqueamento e código de conduta." data-en="Rigorous policies on compliance, anti-corruption, AML and code of conduct.">Políticas rigorosas de compliance, anti-corrupção, prevenção de branqueamento e código de conduta.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-number">04</div>
+        <h4 data-pt="Relato Financeiro" data-en="Financial Reporting">Relato Financeiro</h4>
+        <p data-pt="Demonstrações financeiras auditadas, reporte consolidado de grupo e cumprimento integral das normas aplicáveis." data-en="Audited financial statements, consolidated group reporting and full compliance with applicable standards.">Demonstrações financeiras auditadas, reporte consolidado de grupo e cumprimento integral das normas aplicáveis.</p>
+      </div>
+    </div>
+
+    <div class="gov-docs fade-in">
+      <h3 data-pt="Documentos Institucionais" data-en="Corporate Documents">Documentos Institucionais</h3>
+      <div class="docs-list">
+        <a href="#" class="doc-item">
+          <div class="doc-icon">📄</div>
+          <div class="doc-text">
+            <strong data-pt="Estatutos da Sociedade" data-en="Articles of Association">Estatutos da Sociedade</strong>
+            <span>PDF · 2024</span>
+          </div>
+        </a>
+        <a href="#" class="doc-item">
+          <div class="doc-icon">📊</div>
+          <div class="doc-text">
+            <strong data-pt="Relatório & Contas" data-en="Annual Report">Relatório & Contas</strong>
+            <span data-pt="Brevemente" data-en="Coming Soon">Brevemente</span>
+          </div>
+        </a>
+        <a href="#" class="doc-item">
+          <div class="doc-icon">⚖️</div>
+          <div class="doc-text">
+            <strong data-pt="Código de Ética" data-en="Code of Ethics">Código de Ética</strong>
+            <span>PDF · 2024</span>
+          </div>
+        </a>
+        <a href="#" class="doc-item">
+          <div class="doc-icon">🛡️</div>
+          <div class="doc-text">
+            <strong data-pt="Política de Compliance" data-en="Compliance Policy">Política de Compliance</strong>
+            <span>PDF · 2024</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CANAL DE DENÚNCIAS -->
+<section id="denuncias">
+  <div class="container">
+    <div class="denuncia-box">
+      <div class="denuncia-icon">🔐</div>
+      <div class="denuncia-content">
+        <h3 data-pt="Canal de Denúncias (Whistleblowing)" data-en="Whistleblowing Channel">Canal de Denúncias (Whistleblowing)</h3>
+        <p data-pt="Canal confidencial para reporte de irregularidades, violações éticas ou situações de non-compliance. Todas as comunicações são tratadas com total sigilo." data-en="Confidential channel to report irregularities, ethical breaches or non-compliance. All communications are handled with complete confidentiality.">Canal confidencial para reporte de irregularidades, violações éticas ou situações de non-compliance. Todas as comunicações são tratadas com total sigilo.</p>
+      </div>
+      <a href="mailto:compliance@sonsassets.ao" class="denuncia-cta" data-pt="Reportar →" data-en="Report →">Reportar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRATÉGIA -->
+<section id="estrategia">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Estratégia" data-en="Strategy">Estratégia</span>
+      <h2 class="section-title" data-pt-html="Criação de <span class='accent'>valor sustentado</span>" data-en-html="Building <span class='accent'>sustained value</span>">Criação de <span class="accent">valor sustentado</span></h2>
+      <p class="section-subtitle" data-pt="A nossa abordagem combina gestão activa das participadas com investimento institucional criterioso." data-en="Our approach combines active management of holdings with disciplined institutional investment.">A nossa abordagem combina gestão activa das participadas com investimento institucional criterioso.</p>
+    </div>
+
+    <div class="strategy-grid">
+      <ul class="strategy-points fade-in">
+        <li>
+          <div class="strategy-num">1</div>
+          <div class="strategy-content">
+            <h4 data-pt="Gestão Activa do Portefólio" data-en="Active Portfolio Management">Gestão Activa do Portefólio</h4>
+            <p data-pt="Apoio estratégico, financeiro e operacional às participadas, maximizando sinergias e criando valor." data-en="Strategic, financial and operational support to holdings, maximising synergies and creating value.">Apoio estratégico, financeiro e operacional às participadas, maximizando sinergias e criando valor.</p>
+          </div>
+        </li>
+        <li>
+          <div class="strategy-num">2</div>
+          <div class="strategy-content">
+            <h4 data-pt="Diversificação Setorial" data-en="Sector Diversification">Diversificação Setorial</h4>
+            <p data-pt="Exposição equilibrada a serviços profissionais, retalho, distribuição, banca e seguros." data-en="Balanced exposure to professional services, retail, distribution, banking and insurance.">Exposição equilibrada a serviços profissionais, retalho, distribuição, banca e seguros.</p>
+          </div>
+        </li>
+        <li>
+          <div class="strategy-num">3</div>
+          <div class="strategy-content">
+            <h4 data-pt="Presença Multi-jurisdicional" data-en="Multi-jurisdictional Presence">Presença Multi-jurisdicional</h4>
+            <p data-pt="Operações em Angola, Portugal e África do Sul — plataforma lusófona com alcance internacional." data-en="Operations in Angola, Portugal and South Africa — lusophone platform with international reach.">Operações em Angola, Portugal e África do Sul — plataforma lusófona com alcance internacional.</p>
+          </div>
+        </li>
+        <li>
+          <div class="strategy-num">4</div>
+          <div class="strategy-content">
+            <h4 data-pt="Horizonte de Longo Prazo" data-en="Long-term Horizon">Horizonte de Longo Prazo</h4>
+            <p data-pt="Decisões de investimento orientadas por sustentabilidade e criação de valor intergeracional." data-en="Investment decisions driven by sustainability and intergenerational value creation.">Decisões de investimento orientadas por sustentabilidade e criação de valor intergeracional.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="strategy-visual fade-in">
+        <h3 data-pt-html="Visão <span class='accent'>2030</span>" data-en-html="Vision <span class='accent'>2030</span>">Visão <span class="accent">2030</span></h3>
+        <p data-pt="Consolidar a posição da Sons Assets SGPS como uma das holdings de referência do espaço lusófono, reconhecida pela excelência da gestão, pela qualidade do portefólio e pelo impacto positivo nas economias onde opera." data-en="Consolidate Sons Assets SGPS's position as a leading holding in the lusophone space, recognised for management excellence, portfolio quality and positive impact on the economies where it operates.">Consolidar a posição da Sons Assets SGPS como uma das holdings de referência do espaço lusófono, reconhecida pela excelência da gestão, pela qualidade do portefólio e pelo impacto positivo nas economias onde opera.</p>
+        <p data-pt="Continuar a diversificar o portefólio, explorando oportunidades em sectores emergentes como fintech, economia digital, energias renováveis e agro-indústria." data-en="Continue diversifying the portfolio by exploring opportunities in emerging sectors such as fintech, digital economy, renewable energy and agribusiness.">Continuar a diversificar o portefólio, explorando oportunidades em sectores emergentes como fintech, economia digital, energias renováveis e agro-indústria.</p>
+        <div class="strategy-quote" data-pt="&quot;O verdadeiro valor constrói-se com disciplina, visão e integridade.&quot;" data-en="&quot;True value is built with discipline, vision and integrity.&quot;">"O verdadeiro valor constrói-se com disciplina, visão e integridade."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCEIROS / AFILIAÇÕES -->
+<section class="partners-banner">
+  <div class="partners-content">
+    <div class="partners-header fade-in">
+      <h3 data-pt-html="Redes & <span class='accent'>Afiliações</span>" data-en-html="Networks & <span class='accent'>Affiliations</span>">Redes & <span class="accent">Afiliações</span></h3>
+      <p data-pt="Integramos redes profissionais de referência e mantemos parcerias estratégicas que reforçam a nossa capacidade de operar com excelência à escala internacional." data-en="We are part of leading professional networks and maintain strategic partnerships that strengthen our ability to operate with excellence internationally.">Integramos redes profissionais de referência e mantemos parcerias estratégicas que reforçam a nossa capacidade de operar com excelência à escala internacional.</p>
+    </div>
+    <div class="partners-grid fade-in">
+      <div class="partner-item">
+        <div class="partner-item-label">Praxity</div>
+        <div class="partner-item-desc" data-pt="Rede Internacional" data-en="International Network">Rede Internacional</div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-item-label">OCPCA</div>
+        <div class="partner-item-desc" data-pt="Ordem Profissional · Angola" data-en="Professional Order · Angola">Ordem Profissional · Angola</div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-item-label">CMC</div>
+        <div class="partner-item-desc" data-pt="Comissão Mercado Capitais" data-en="Capital Markets Commission">Comissão Mercado Capitais</div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-item-label">ARSEG</div>
+        <div class="partner-item-desc" data-pt="Agência Reguladora Seguros" data-en="Insurance Regulator">Agência Reguladora Seguros</div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-item-label">BNA</div>
+        <div class="partner-item-desc" data-pt="Banco Nacional Angola" data-en="National Bank of Angola">Banco Nacional Angola</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSROOM -->
+<section id="news">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Sala de Imprensa" data-en="Newsroom">Sala de Imprensa</span>
+      <h2 class="section-title" data-pt-html="Últimas <span class='accent'>notícias</span>" data-en-html="Latest <span class='accent'>news</span>">Últimas <span class="accent">notícias</span></h2>
+      <p class="section-subtitle" data-pt="Comunicados institucionais, marcos do grupo e desenvolvimentos das nossas participadas." data-en="Institutional announcements, group milestones and developments from our holdings.">Comunicados institucionais, marcos do grupo e desenvolvimentos das nossas participadas.</p>
+    </div>
+
+    <div class="news-grid fade-in">
+      <div class="news-card">
+        <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80')">
+          <span class="news-category" data-pt="Institucional" data-en="Corporate">Institucional</span>
+        </div>
+        <div class="news-content">
+          <div class="news-date">Abril 2026</div>
+          <h4 data-pt="Sons Assets SGPS lança novo website institucional" data-en="Sons Assets SGPS launches new corporate website">Sons Assets SGPS lança novo website institucional</h4>
+          <p data-pt="O grupo reforça a sua estratégia de comunicação corporativa com uma nova plataforma digital institucional." data-en="The group strengthens its corporate communication strategy with a new institutional digital platform.">O grupo reforça a sua estratégia de comunicação corporativa com uma nova plataforma digital institucional.</p>
+          <a href="#" class="news-link" data-pt="Ler mais →" data-en="Read more →">Ler mais →</a>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80')">
+          <span class="news-category" data-pt="Portefólio" data-en="Portfolio">Portefólio</span>
+        </div>
+        <div class="news-content">
+          <div class="news-date">Março 2026</div>
+          <h4 data-pt="SEGCONTAS amplia participação no sector segurador" data-en="SEGCONTAS expands presence in the insurance sector">SEGCONTAS amplia participação no sector segurador</h4>
+          <p data-pt="Reforço da exposição estratégica à Protteja Seguros e consolidação do cluster de serviços financeiros." data-en="Strengthening strategic exposure to Protteja Seguros and consolidating the financial services cluster.">Reforço da exposição estratégica à Protteja Seguros e consolidação do cluster de serviços financeiros.</p>
+          <a href="#" class="news-link" data-pt="Ler mais →" data-en="Read more →">Ler mais →</a>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80')">
+          <span class="news-category" data-pt="Internacional" data-en="International">Internacional</span>
+        </div>
+        <div class="news-content">
+          <div class="news-date">Fevereiro 2026</div>
+          <h4 data-pt="Expansão da plataforma lusófona com Yokane Portugal" data-en="Expansion of the lusophone platform with Yokane Portugal">Expansão da plataforma lusófona com Yokane Portugal</h4>
+          <p data-pt="A plataforma europeia do grupo reforça operações de distribuição entre Portugal e o mercado angolano." data-en="The group's European platform strengthens distribution operations between Portugal and the Angolan market.">A plataforma europeia do grupo reforça operações de distribuição entre Portugal e o mercado angolano.</p>
+          <a href="#" class="news-link" data-pt="Ler mais →" data-en="Read more →">Ler mais →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTOS -->
+<section id="contactos">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-pt="Fale Connosco" data-en="Get in Touch">Fale Connosco</span>
+      <h2 class="section-title" data-pt-html="Vamos <span class='accent'>conversar</span>" data-en-html="Let's <span class='accent'>talk</span>">Vamos <span class="accent">conversar</span></h2>
+      <p class="section-subtitle" data-pt="Para investidores, parceiros estratégicos, imprensa ou informações institucionais." data-en="For investors, strategic partners, press or corporate enquiries.">Para investidores, parceiros estratégicos, imprensa ou informações institucionais.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info-wrap fade-in">
+        <div class="contact-info">
+          <h3 data-pt="Contactos Institucionais" data-en="Corporate Contacts">Contactos Institucionais</h3>
+          <p class="intro" data-pt="A nossa equipa está disponível para responder às suas questões sobre o grupo, o portefólio ou oportunidades de parceria." data-en="Our team is available to answer your questions about the group, the portfolio or partnership opportunities.">A nossa equipa está disponível para responder às suas questões sobre o grupo, o portefólio ou oportunidades de parceria.</p>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h5 data-pt="SEDE" data-en="HEADQUARTERS">SEDE</h5>
+              <p>Avenida Fidel Castro, Rua nº 3<br>Sentido Benfica, Viana<br>Luanda, Angola</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">☎</div>
+            <div>
+              <h5 data-pt="TELEFONES" data-en="PHONES">TELEFONES</h5>
+              <p>
+                <a href="tel:+244922300840">(+244) 922 300 840</a><br>
+                <a href="tel:+244959300840">(+244) 959 300 840</a><br>
+                <a href="tel:+244934332784">(+244) 934 332 784</a><br>
+                <a href="tel:+244997604242">(+244) 997 604 242</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <h5 data-pt="EMAIL" data-en="EMAIL">EMAIL</h5>
+              <p><a href="mailto:geral@sonsassets.ao">geral@sonsassets.ao</a><br><a href="mailto:investors@sonsassets.ao">investors@sonsassets.ao</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">⏱</div>
+            <div>
+              <h5 data-pt="HORÁRIO" data-en="OPENING HOURS">HORÁRIO</h5>
+              <p data-pt="Segunda a Sexta · 08h30 — 17h30<br>Hora de Luanda (WAT)" data-en="Monday to Friday · 08:30 — 17:30<br>Luanda Time (WAT)">Segunda a Sexta · 08h30 — 17h30<br>Hora de Luanda (WAT)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-in">
+        <div class="form-success" id="formSuccess" data-pt="✓ Mensagem enviada com sucesso. Responderemos em breve." data-en="✓ Message sent successfully. We'll get back to you shortly.">✓ Mensagem enviada com sucesso. Responderemos em breve.</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-pt="Nome *" data-en="Name *">Nome *</label>
+            <input type="text" id="fName" required>
+          </div>
+          <div class="form-group">
+            <label data-pt="Empresa" data-en="Company">Empresa</label>
+            <input type="text" id="fCompany">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-pt="Email *" data-en="Email *">Email *</label>
+            <input type="email" id="fEmail" required>
+          </div>
+          <div class="form-group">
+            <label data-pt="Telefone" data-en="Phone">Telefone</label>
+            <input type="tel" id="fPhone">
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-pt="Assunto *" data-en="Subject *">Assunto *</label>
+          <select id="fSubject" required>
+            <option value="" data-pt="Seleccione..." data-en="Select...">Seleccione...</option>
+            <option data-pt="Investidores & Parcerias" data-en="Investors & Partnerships">Investidores & Parcerias</option>
+            <option data-pt="Informações Institucionais" data-en="Corporate Information">Informações Institucionais</option>
+            <option data-pt="Imprensa & Comunicação" data-en="Press & Communications">Imprensa & Comunicação</option>
+            <option data-pt="Oportunidades de Negócio" data-en="Business Opportunities">Oportunidades de Negócio</option>
+            <option data-pt="Outro" data-en="Other">Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-pt="Mensagem *" data-en="Message *">Mensagem *</label>
+          <textarea id="fMessage" required data-pt-ph="Escreva aqui a sua mensagem..." data-en-ph="Type your message here..." placeholder="Escreva aqui a sua mensagem..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()" data-pt="Enviar mensagem →" data-en="Send message →">Enviar mensagem →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="footer-brand">
+          <svg width="48" height="48" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,25 50,10 80,25 80,75 50,90 20,75" fill="#F5B800" stroke="#F5B800"/>
+            <path d="M 30 35 L 45 35 L 40 45 L 55 45 L 48 55 L 62 55" stroke="#1A1A1A" stroke-width="3.5" fill="none" stroke-linecap="square"/>
+            <text x="50" y="62" font-family="Arial Black" font-size="30" font-weight="900" fill="#1A1A1A" text-anchor="middle">S</text>
+          </svg>
+          <div style="font-family:'Barlow Condensed';font-weight:900;font-size:22px;letter-spacing:1px">
+            <span style="color:#fff">SONS</span><span style="color:var(--yellow)">ASSETS</span>
+            <div style="font-family:'Inter';font-weight:400;font-size:10px;color:var(--gray);letter-spacing:.5px;margin-top:-2px" data-pt="SGPS — Gestão de Participações Sociais, SA" data-en="SGPS — Holding Company, SA">SGPS — Gestão de Participações Sociais, SA</div>
+          </div>
+        </div>
+        <p data-pt="Holding angolana com portefólio diversificado de participações operacionais e financeiras em Angola, Portugal e África do Sul." data-en="Angolan holding with diversified portfolio of operating and financial holdings in Angola, Portugal and South Africa.">Holding angolana com portefólio diversificado de participações operacionais e financeiras em Angola, Portugal e África do Sul.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-pt="Navegação" data-en="Navigation">Navegação</h5>
+        <a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a>
+        <a href="#marcos" data-pt="Marcos" data-en="Milestones">Marcos</a>
+        <a href="#estrutura" data-pt="Estrutura" data-en="Structure">Estrutura</a>
+        <a href="#portefolio" data-pt="Portefólio" data-en="Portfolio">Portefólio</a>
+        <a href="#financeiras" data-pt="Financeiras" data-en="Financials">Financeiras</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-pt="Institucional" data-en="Corporate">Institucional</h5>
+        <a href="#governance" data-pt="Governance" data-en="Governance">Governance</a>
+        <a href="#denuncias" data-pt="Canal de Denúncias" data-en="Whistleblowing">Canal de Denúncias</a>
+        <a href="#news" data-pt="Sala de Imprensa" data-en="Newsroom">Sala de Imprensa</a>
+        <a href="#" data-pt="Política de Privacidade" data-en="Privacy Policy">Política de Privacidade</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-pt="Contactos" data-en="Contact">Contactos</h5>
+        <a href="mailto:geral@sonsassets.ao">geral@sonsassets.ao</a>
+        <a href="tel:+244922300840">(+244) 922 300 840</a>
+        <a href="tel:+244959300840">(+244) 959 300 840</a>
+        <a href="tel:+244934332784">(+244) 934 332 784</a>
+        <a href="tel:+244997604242">(+244) 997 604 242</a>
+        <a href="#" data-pt="Viana · Luanda · Angola" data-en="Viana · Luanda · Angola">Viana · Luanda · Angola</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div data-pt="© 2026 Sons Assets SGPS, S.A. · Todos os direitos reservados." data-en="© 2026 Sons Assets SGPS, S.A. · All rights reserved.">© 2026 Sons Assets SGPS, S.A. · Todos os direitos reservados.</div>
+      <div>Luanda · Lisboa · Joanesburgo</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll',()=>{
+    document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>30);
+  });
+
+  // Fade-in animations
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+  },{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#navLinks a').forEach(a=>{
+    a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Language switcher
+  let currentLang = 'pt';
+  function setLang(lang){
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+    event.target.classList.add('active');
+    // Text nodes
+    document.querySelectorAll('[data-pt]').forEach(el=>{
+      const val = el.getAttribute('data-'+lang);
+      if(val!==null) el.textContent = val;
+    });
+    // HTML nodes
+    document.querySelectorAll('[data-pt-html]').forEach(el=>{
+      const val = el.getAttribute('data-'+lang+'-html');
+      if(val!==null) el.innerHTML = val;
+    });
+    // Placeholders
+    document.querySelectorAll('[data-pt-ph]').forEach(el=>{
+      const val = el.getAttribute('data-'+lang+'-ph');
+      if(val!==null) el.setAttribute('placeholder',val);
+    });
+  }
+
+  // Form submit
+  function submitForm(){
+    const n=document.getElementById('fName').value.trim();
+    const e=document.getElementById('fEmail').value.trim();
+    const s=document.getElementById('fSubject').value;
+    const m=document.getElementById('fMessage').value.trim();
+    const msg = currentLang==='pt' ? 'Por favor preencha os campos obrigatórios (*)' : 'Please fill in the required fields (*)';
+    if(!n||!e||!s||!m){alert(msg);return}
+    document.getElementById('formSuccess').classList.add('show');
+    ['fName','fCompany','fEmail','fPhone','fSubject','fMessage'].forEach(id=>document.getElementById(id).value='');
+    setTimeout(()=>document.getElementById('formSuccess').classList.remove('show'),5000);
+  }
+</script>
+
+</body>
+</html>
